@@ -10,10 +10,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class Teacher
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * 
+ *
  * @property TeacherRole $teacher_role
  * @property University $university
  * @property Collection|Exam[] $exams
@@ -36,8 +37,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Teacher extends Model
+class Teacher extends Authenticatable
 {
+    use \Illuminate\Auth\Authenticatable;
 	use SoftDeletes;
 	protected $table = 'teachers';
 
